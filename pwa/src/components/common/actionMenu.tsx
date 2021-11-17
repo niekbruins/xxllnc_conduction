@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import * as React from "react";
 
 export const menuItems = [
@@ -13,7 +14,7 @@ const ActionMenu = () => (
     <ul className="utrecht-sidenav__list">
       {menuItems.map(menuItem => (
         <li className="utrecht-sidenav__item">
-          <a className="utrecht-sidenav__link" href={menuItem.href}>{menuItem.label}</a><span></span>
+          <Link className="utrecht-sidenav__link" to={menuItem.href}>{menuItem.label}</Link><span></span>
         </li>        
       ))}
     </ul>

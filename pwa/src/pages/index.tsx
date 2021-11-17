@@ -9,6 +9,7 @@ import { menuItems } from "../components/common/actionMenu";
 const IndexPage = () => {
   const context = useUrlContext();
 
+
   React.useEffect(() => {
     console.log(context.apiUrl);
     console.log(context.meUrl);
@@ -28,15 +29,7 @@ const IndexPage = () => {
           </p>
 
           {
-            isLoggedIn() ?
-              <Link to="/data">
-                <button className="utrecht-button" type="button">
-                  <b className="utrecht-b" style={{ verticalAlign: 'middle' }}>
-                    MIJN GEGEVENS
-                  </b>
-                </button>
-              </Link>
-              :
+            !isLoggedIn() &&
               <a className="utrecht-link" href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "/redirect"}>
                 <button className="utrecht-button" type="button">
                   <img src={DigiDImg} width='55px' height='55px' />
@@ -45,13 +38,13 @@ const IndexPage = () => {
                   </b>
                 </button>
               </a>
-        }
+          }
 
           <br/>
           <br/>
           {menuItems.map(menuItem => (
               <>
-              <Link to={menuItem.href}>
+              <Link to={menuItem.href} key={menuItem.href}>
                 <button className="utrecht-button" type="button">
                   <b className="utrecht-b" style={{verticalAlign: 'middle'}}>
                     {menuItem.label}
