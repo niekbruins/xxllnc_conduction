@@ -1,0 +1,5 @@
+/certs
+.idea/
+.vs
+
+commonground-gateway/
