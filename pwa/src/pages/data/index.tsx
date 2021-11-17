@@ -68,7 +68,7 @@ function Index() {
                 Leeftijd: <span style={{ textAlign: "right", float: "right" }}>{ data?.leeftijd } ({ data?.geboorte?.datum?.datum })</span>
               </h5>
               <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
-                Verblijfsplaats: <span style={{ textAlign: "right", float: "right" }}>{ data?.verblijfplaats.adresregel1 }, { data?.verblijfplaats.adresregel2 }</span>
+                Verblijfsplaats: <span style={{ textAlign: "right", float: "right" }}>{ data?.verblijfplaats?.adresregel1 }, { data?.verblijfplaats?.adresregel2 }</span>
               </h5>
             </>
           }
