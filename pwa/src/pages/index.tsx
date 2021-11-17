@@ -3,7 +3,8 @@ import { Link } from "gatsby"
 import Layout from "../components/common/layout";
 import {useUrlContext} from "../context/urlContext";
 import DigiDImg from "../images/digid_button.svg";
-import { getUser, isLoggedIn, logout } from "../services/auth";
+import { isLoggedIn } from "../services/auth";
+import { menuItems } from "../components/common/actionMenu";
 
 const IndexPage = () => {
   const context = useUrlContext();
@@ -29,15 +30,15 @@ const IndexPage = () => {
           {
             isLoggedIn() ?
               <Link to="/data">
-                <button class="utrecht-button" type="button">
-                  <b class="utrecht-b" style={{ verticalAlign: 'middle' }}>
+                <button className="utrecht-button" type="button">
+                  <b className="utrecht-b" style={{ verticalAlign: 'middle' }}>
                     MIJN GEGEVENS
                   </b>
                 </button>
               </Link>
               :
               <a className="utrecht-link" href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "/redirect"}>
-                <button class="utrecht-button" type="button">
+                <button className="utrecht-button" type="button">
                   <img src={DigiDImg} width='55px' height='55px' />
                   <b className="utrecht-b" style={{textAlign: 'center', verticalAlign: 'middle', paddingLeft: '45px'}}>
                     INLOGGEN
@@ -48,50 +49,21 @@ const IndexPage = () => {
 
           <br/>
           <br/>
+          {menuItems.map(menuItem => (
+              <>
+              <Link to="/cases">
+                <button className="utrecht-button" type="button">
+                  <b className="utrecht-b" style={{verticalAlign: 'middle'}}>
+                    Mijn aanvragen
+                  </b>
+                </button>
+              </Link>
 
-            <Link to="/cases">
-              <button class="utrecht-button" type="button">
-                <b className="utrecht-b" style={{verticalAlign: 'middle'}}>
-                  Mijn aanvragen
-                </b>
-              </button>
-            </Link>
+              <br/>
+              <br/>
+              </>
+            ))}
 
-          <br/>
-          <br/>
-
-            <Link to="/products">
-              <button class="utrecht-button" type="button">
-                <b className="utrecht-b" style={{verticalAlign: 'middle'}}>
-                  Diensten
-                </b>
-              </button>
-            </Link>
-
-          <br />
-          <br />
-
-            <Link to="/vault">
-              <button class="utrecht-button" type="button">
-                <b className="utrecht-b" style={{verticalAlign: 'middle'}}>
-                  Mijn Kluis
-                </b>
-              </button>
-            </Link>
-
-          <br />
-          <br />
-
-            <Link to="/data">
-              <button class="utrecht-button" type="button">
-                <b className="utrecht-b" style={{verticalAlign: 'middle'}}>
-                  Mijn gegevens
-                </b>
-              </button>
-            </Link>
-
-          <br />
-          <br />
           </div>
         </main>
       </Layout>

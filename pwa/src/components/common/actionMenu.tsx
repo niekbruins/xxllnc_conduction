@@ -1,24 +1,23 @@
 import * as React from "react";
 
-export default function ActionMenu() {
+export const menuItems = [
+  {href: '/data', label: 'Mijn gegevens'},
+  {href: '/cases', label: 'Mijn aanvragen'},
+  {href: '/vault', label: 'Mijn kluis'},
+  {href: '/taxes', label: 'Mijn belastinggegevens'},
+  {href: '/products', label: 'Diensten'},
+]
 
-  return (
-    <nav className="utrecht-sidenav">
-      <ul className="utrecht-sidenav__list">
+const ActionMenu = () => (
+  <nav className="utrecht-sidenav">
+    <ul className="utrecht-sidenav__list">
+      {menuItems.map(menuItem => (
         <li className="utrecht-sidenav__item">
-          <a className="utrecht-sidenav__link" href="/products">Diensten</a><span></span>
-        </li>
-        <li className="utrecht-sidenav__item">
-          <a className="utrecht-sidenav__link" href="/cases">Mijn aanvragen</a><span></span>
-        </li>
-        <li className="utrecht-sidenav__item">
-          <a className="utrecht-sidenav__link" href="/data">Mijn gegevens</a><span></span>
-        </li>
-        <li className="utrecht-sidenav__item">
-          <a className="utrecht-sidenav__link" href="/vault">Mijn kluis</a><span></span>
-        </li>
+          <a className="utrecht-sidenav__link" href={menuItem.href}>{menuItem.label}</a><span></span>
+        </li>        
+      ))}
+    </ul>
+  </nav>
+);
 
-      </ul>
-    </nav>
-  );
-}
+export default ActionMenu
