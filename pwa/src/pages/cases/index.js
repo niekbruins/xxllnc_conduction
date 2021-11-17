@@ -1,9 +1,39 @@
 import * as React from "react"
+import { useEffect, useState } from "react";
+import { Link } from "gatsby";
 import Layout from "../../components/common/layout";
 import Breadcrumbs from "../../components/common/breadcrumbs";
 import ActionMenu from "../../components/common/actionMenu";
+import { useUrlContext } from "../../context/urlContext";
+import { isLoggedIn } from "../../services/auth";
 
 const IndexPage = () => {
+  let context = useUrlContext();
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (isLoggedIn()) {
+        getCases();
+      }
+    }
+  }, []);
+
+  const getCases = () => {
+    fetch(context.apiUrl + "/gateways/zaken/zaken", {
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        if (data) {
+          setData(data);
+        } else {
+          console.log('Not sure what to do here')
+        }
+      });
+  }
 
   return (
       <Layout>
@@ -19,21 +49,29 @@ const IndexPage = () => {
                 Hier vind u uw bestaande aanvragen voor verschillende zaken.
               </h4>
               <div className="utrecht-html">
-                <table lang="nl" summary="Overzicht van de stemmen voor en tegen het betaald parkeren." style={{ width: "100%" }}>
-                  <caption>Hier kunnen we een caption neerzetten</caption>
+                <table lang="nl" summary="Overzicht van zaken" style={{ width: "100%" }}>
                   <thead>
                   <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col" className="numeric">Status</th>
-                    <th scope="col" className="numeric">Startdatum</th>
+                    <th scope="col">identificatie</th>
+                    <th scope="col" className="numeric">registratie datum</th>
+                    <th scope="col" className="numeric">bronorganisatie</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Huwelijk</td>
-                    <td className="numeric">Pending</td>
-                    <td className="numeric">8-11-2021</td>
-                  </tr>
+                    {
+                      data && data.results &&
+                        data.results.map(zaak => (
+                          <tr>
+                              <td>
+                              <Link to={`/case?id=${zaak?.uuid}`}>
+                                {zaak?.identificatie}
+                              </Link>
+                              </td>
+                            <td className="numeric">{zaak?.registratiedatum}</td>
+                            <td className="numeric">{zaak?.bronorganisatie}</td>
+                          </tr>
+                        ))
+                    }
                   </tbody>
                 </table>
               </div>
