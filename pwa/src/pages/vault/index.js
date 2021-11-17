@@ -30,34 +30,52 @@ function Index() {
     }
       }, []);
 
-      return <>
-      <Layout>
-        <main>
-          <div className="row">
-            <div className="col-12 col-sm-3">
-              <ActionMenu />
-            </div>
-            <div className="col-12 col-sm-9">
-              <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Mijn gegevens', href: '/data' }]} />
-              <h1 className="utrecht-heading-1 utrecht-heading-1--distanced">Identiteit</h1>
-              <br /><br />
-              {
-                <>
-                  <h3 className="utrecht-heading-3 utrecht-heading-3--distanced" >Persoonlijke gegevens</h3>
-                  <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
-                      Bsn: <span style={{ textAlign: "right", float: "right" }}>{ data?.burgerservicenummer }</span>
-                  </h5>
-                  <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
-                      Naam: <span style={{ textAlign: "right", float: "right" }}>{ data?.naam?.aanhef }</span>
-                  </h5>
-                </>
-              }
+  return <>
+    <Layout>
+      <main>
+        <div className="row">
+          <div className="col-12 col-sm-3">
+            <ActionMenu />
+          </div>
+          <div className="col-12 col-sm-9">
+            <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Mijn kluis', href: '/vault' } ]} />
+            <h1 className="utrecht-heading-1 utrecht-heading-1--distanced">Mijn kluis</h1>
+            <div className="utrecht-html">
+              <table lang="nl" summary="Overzicht van de stemmen voor en tegen het betaald parkeren." style={{width: "100%"}}>
+                <thead>
+                <tr>
+                  <th scope="col">Type</th>
+                  <th scope="col">Aangemaakt op</th>
+                  <th scope="col">Pdf</th>
+                  <th scope="col">QR</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                  claims !== null ?
+                    claims.map((row) => (
+                      <tr>
+                        <td>{row.name}</td>
+                        <td>{row.dateCreated}</td>
+                        <td>{documentDownload(row.document, row.name, ".pdf")}</td>
+                        <td>QR CODE</td>
+                      </tr>
+                    )) :
+                    <tr>
+                      <td>No results found</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                }
+                </tbody>
+              </table>
             </div>
           </div>
-        </main>
-      </Layout>
-    </>
-  
-  }
+        </div>
+      </main>
+    </Layout>
+  </>
 
+}
 export default Index
