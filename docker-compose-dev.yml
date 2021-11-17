@@ -21,7 +21,7 @@ services:
 
   gateway-frontend:
     &gateway-frontend
-    image: ghcr.io/conductionnl/commonground-gateway-frontend:dev
+    image: ghcr.io/conductionnl/commonground-gateway-frontend:latest
     depends_on:
       - php
     ports:
