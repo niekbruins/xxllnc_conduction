@@ -2,6 +2,7 @@ import * as React from "react";
 import {useUrlContext} from "../../context/urlContext";
 import {getUser, isLoggedIn, logout} from "../../services/auth";
 import {navigate} from "gatsby-link";
+import { Link } from "gatsby";
 
 export default function MainMenu() {
 
@@ -19,13 +20,8 @@ export default function MainMenu() {
           <div className="d-inline">
             <ul className="utrecht-topnav__list" >
               <li className="utrecht-topnav__item">
-                {
-                  isLoggedIn() &&
-                  <span className="utrecht-topnav__link">
-              {
-                getUser().name
-              }
-                </span>
+                {isLoggedIn() &&
+                  <Link className="utrecht-topnav__link" to="/data">{getUser().name}</Link>
                 }
               </li>
               <li className="utrecht-topnav__item" >

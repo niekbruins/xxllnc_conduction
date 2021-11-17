@@ -5,6 +5,7 @@ import {useUrlContext} from "../context/urlContext";
 import DigiDImg from "../images/digid_button.svg";
 import { isLoggedIn } from "../services/auth";
 import { menuItems } from "../components/common/actionMenu";
+import { Fragment } from "react";
 
 const IndexPage = () => {
   const context = useUrlContext();
@@ -43,8 +44,8 @@ const IndexPage = () => {
           <br/>
           <br/>
           {menuItems.map(menuItem => (
-              <>
-              <Link to={menuItem.href} key={menuItem.href}>
+              <Fragment key={menuItem.href}>
+              <Link to={menuItem.href}>
                 <button className="utrecht-button" type="button">
                   <b className="utrecht-b" style={{verticalAlign: 'middle'}}>
                     {menuItem.label}
@@ -54,7 +55,7 @@ const IndexPage = () => {
 
               <br/>
               <br/>
-              </>
+              </Fragment>
             ))}
 
           </div>
