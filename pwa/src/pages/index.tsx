@@ -51,10 +51,10 @@ const IndexPage = () => {
           <br/>
           {menuItems.map(menuItem => (
               <>
-              <Link to="/cases">
+              <Link to={menuItem.href}>
                 <button className="utrecht-button" type="button">
                   <b className="utrecht-b" style={{verticalAlign: 'middle'}}>
-                    Mijn aanvragen
+                    {menuItem.label}
                   </b>
                 </button>
               </Link>
