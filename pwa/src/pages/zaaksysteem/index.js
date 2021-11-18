@@ -64,19 +64,22 @@ const IndexPage = () => {
             </h5>
             <h3 className="utrecht-heading-3 utrecht-heading-3--distanced" >Algemene gegevens</h3>
             <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
-              Identificatie: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.id }</span>
+              Zaaknummer: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.id }</span>
             </h5>
             <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
               Zaaktype: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.casetype.preview }</span>
             </h5>
             <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
+              Status: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.phase }</span>
+            </h5>
+            <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
               Behandelaar: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.route.preview }</span>
             </h5>
             <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
-              Aanmaak datum: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.route.instance.date_created }</span>
+              Registratiedatum: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.date_of_registration }</span>
             </h5>
             <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
-              Huidige status: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.phase }</span>
+              Streefafhandeldatum: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.date_target }</span>
             </h5>
             <h5 className="utrecht-heading-5 utrecht-heading-5--distanced" style={{ width: "100%" }} >
               Vertrouwelijkheid: <span style={{ textAlign: "right", float: "right" }}>{ data?.result.instance.confidentiality.mapped }</span>
