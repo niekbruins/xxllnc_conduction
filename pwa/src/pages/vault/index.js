@@ -52,7 +52,7 @@ function Index() {
                 </thead>
                 <tbody>
                 {
-                  claims !== null ?
+                  Array.isArray(claims) ?
                     claims.map((row) => (
                       <tr>
                         <td>{row.name}</td>
