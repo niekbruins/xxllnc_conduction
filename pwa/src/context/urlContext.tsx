@@ -1,11 +1,13 @@
 import {createContext, useContext} from 'react';
 import * as React from "react";
+import queryString from 'query-string';
 
 const UrlContext = createContext(undefined);
 
 export function UrlContextWrapper({ children }) {
 
   let sharedState = {};
+  const theme = queryString.parse((window as any).location.search)
 
   if (typeof window !== "undefined") {
     sharedState = {
@@ -15,7 +17,7 @@ export function UrlContextWrapper({ children }) {
       frontendUrl: (window as any).GATSBY_FRONTEND_URL ?? process.env.GATSBY_FRONTEND_URL,
       organization: (window as any).GATSBY_ORGANIZATION ?? process.env.GATSBY_ORGANIZATION,
       loginRedirect: (window as any).GATSBY_LOGIN_REDIRECT ?? process.env.GATSBY_LOGIN_REDIRECT,
-      defaultTheme: (window as any).GATSBY_DEFAULT_THEME ?? process.env.GATSBY_DEFAULT_THEME,
+      defaultTheme: theme?.GATSBY_DEFAULT_THEME ?? process.env.GATSBY_DEFAULT_THEME,
     }
   }
 
